@@ -1,7 +1,7 @@
 package dev.java10x.ReceitaComIA.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import dev.java10x.ReceitaComIA.enums.Categoria;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -13,10 +13,17 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class FoodItem {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
-    private Enum categoria;
+
+    @Enumerated(EnumType.STRING)
+    private Categoria categoria;
+
     private Integer quantidade;
+
     private LocalDateTime validade;
 
 
@@ -44,19 +51,19 @@ public class FoodItem {
         this.quantidade = quantidade;
     }
 
-    public Enum getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Enum categoria) {
-        this.categoria = categoria;
-    }
-
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }
